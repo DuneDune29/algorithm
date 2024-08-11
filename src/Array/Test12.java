@@ -16,9 +16,11 @@ public class Test12 {
             }
         }
 
+        int answer = 0;
+
         for(int i = 1; i <= student; i++) {
             for (int j = 1; j <= student; j++) {
-                int n = 0;
+                int count = 0;
                 for (int k = 0; k < test; k++) {
                     int mentor = 0;
                     int mentee = 0;
@@ -26,11 +28,20 @@ public class Test12 {
                         if (arr[k][l] == i) mentor = l;
                         if (arr[k][l] == j) mentee = l;
                     }
+                    if (mentor < mentee) count++;
                 }
+                if (count == test) answer++;
             }
         }
 
-        System.out.println();
+        System.out.println(answer);
     }
 }
+
+/*
+4 3
+3 4 1 2
+4 3 2 1
+3 1 4 2
+ */
 
