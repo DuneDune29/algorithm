@@ -1,7 +1,6 @@
 package TwoPointersSlidingWindow;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Test2 {
     public static void main(String[] args) {
@@ -19,31 +18,42 @@ public class Test2 {
             array2[i] = scanner.nextInt();
         }
 
-        int[] distinctArray = new int[size1];
-        for(int i = 0; i < size1; i++){
-            for(int j = 0; j < size2; j++){
-                if(array1[i] == array2[j]) {
-                    distinctArray[i] = array1[i];
-                }
+        Arrays.sort(array1);
+        Arrays.sort(array2);
+
+        ArrayList<Integer> arrList = new ArrayList<>();
+        int p1 = 0;
+        int p2 = 0;
+        while (p1 < size1 && p2 < size2) {
+            if(array1[p1] < array2[p2]) {
+                p1++;
+            } else if (array1[p1] == array2[p2]) {
+                arrList.add(array1[p1]);
+                p1++;
+                p2++;
+            } else {
+                p2++;
             }
+        }
+        for (int i : arrList) {
+            System.out.print(i + " ");
         }
 
-        int[] tempArray = new int[size1];
-        for(int i = 0; i < distinctArray.length; i++) {
-            for(int j = 0; j < distinctArray.length; j++){
-                if(distinctArray[i] < distinctArray[j]) {
-                    tempArray[i] = distinctArray[i];
-                    distinctArray[i] = distinctArray[j];
-                    distinctArray[j] = tempArray[i];
-                }
-            }
-        }
-
-        for(int i : distinctArray) {
-            if(i != 0) {
-                System.out.print(i + " ");
-            }
-        }
+//        ArrayList<Integer> distinctArrayList = new ArrayList<>();
+//
+//        for(int i = 0; i < size1; i++){
+//            for(int j = 0; j < size2; j++){
+//                if(array1[i] == array2[j]) {
+//                    distinctArrayList.add(array1[i]);
+//                    break;
+//                }
+//            }
+//        }
+//        Collections.sort(distinctArrayList);
+//
+//        for(int i : distinctArrayList) {
+//            System.out.print(i + " ");
+//        }
     }
 }
 
